@@ -99,6 +99,7 @@ public class EntryDaoImpl extends AbstractDao<Entry, Integer> implements EntryDa
 	
 	@Override
 	protected List<Entry> createList(ResultSet resultSet) throws SQLException {
+		LOG.debug("Run createList method");
 		List<Entry> entries = new ArrayList<>();
 		while (resultSet.next()) {
 			Entry entry = new Entry();
@@ -159,7 +160,28 @@ public class EntryDaoImpl extends AbstractDao<Entry, Integer> implements EntryDa
         return entries != null ? entries : Collections.<Entry>emptyList();
 	}
 
+	@Override
+	public int quantity() {
+		LOG.debug("Run quantity method");
+		int quantity = 0;
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try{
+			connection = ConnectionPool.getInstance().getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(PropertiesManager.SQL_REQUEST.getProperty("sql.entry.quantity"));
+			quantity = getQuantity(resultSet);
+		} catch (SQLException e) {
+			LOG.error("Can not calculete quantity entry", e);
+		} finally {
+			DBUtil.close(connection, statement, resultSet);
+		}
+		return quantity;
+	}
+
 	private String getSqlRequest(String orderBy) {
+		LOG.debug("Run getSqlRequest method");
 		if(orderBy.equals(Constants.PARAM_ENTRY_ID)) {
 			return PropertiesManager.SQL_REQUEST.getProperty("sql.read.entry.and.order.by.id");
 		} else if(orderBy.equals(Constants.PARAM_ENTRY_NAME)) {
@@ -175,5 +197,14 @@ public class EntryDaoImpl extends AbstractDao<Entry, Integer> implements EntryDa
 		} else {
 			throw new IllegalArgumentException(); 
 		}
+	}
+	
+	private int getQuantity(ResultSet resultSet) throws SQLException {
+		LOG.debug("Run getQuantity method");
+		int quantity = 0;
+        while (resultSet.next()) {
+            quantity = resultSet.getInt(Constants.PARAM_NAME_COUNT);
+        }
+        return quantity;
 	}
 }

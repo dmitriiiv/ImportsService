@@ -8,5 +8,7 @@ public interface EntryDao extends CrudDao<Entry,Integer>{
 
 	Entry readByLogin(String login);
 	
+	int quantity();
+	
 	List<Entry> readAndOrderBy(String orderBy, int beginIndex, int quantity);
 }

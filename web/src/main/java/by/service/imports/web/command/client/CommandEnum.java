@@ -5,6 +5,7 @@ import by.service.imports.web.command.AddEntriesCommand;
 import by.service.imports.web.command.EntriesCommand;
 import by.service.imports.web.command.ImportCommand;
 import by.service.imports.web.command.MenuCommand;
+import by.service.imports.web.command.PageCommand;
 
 public enum CommandEnum {
 	MENU {
@@ -29,6 +30,12 @@ public enum CommandEnum {
 		@Override
 		public ActionCommand getCurrentCommand() {
 			return new ImportCommand();
+		}
+	}, 
+	PAGE {
+		@Override
+		public ActionCommand getCurrentCommand() {
+			return new PageCommand();
 		}
 	};
 	
