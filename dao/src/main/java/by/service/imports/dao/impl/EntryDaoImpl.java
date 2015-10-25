@@ -115,20 +115,21 @@ public class EntryDaoImpl extends AbstractDao<Entry, Integer> implements EntryDa
 	}
 
 	@Override
-	public Entry readByLogin(String login) {
-		LOG.debug("Run readByLogin method, login=" + login);
+	public Entry readByNameAndSurname(String name, String surname) {
+		LOG.debug("Run readByLogin method, name=" + name + ", surname=" + surname);
 		Entry entry = null;
 		Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try{
         	connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement(PropertiesManager.SQL_REQUEST.getProperty("sql.read.entry.by.login"));
-			statement.setString(1, login);
+			statement = connection.prepareStatement(PropertiesManager.SQL_REQUEST.getProperty("sql.read.entry.by.name.and.surname"));
+			statement.setString(1, name);
+			statement.setString(2, surname);
 			resultSet = statement.executeQuery();
 			entry = create(resultSet);
         } catch (SQLException e) {
-        	LOG.error("Can not read by login=" + login, e);
+        	LOG.error("Can not read by name=" + name + ", surname=" + surname, e);
         } finally {
             DBUtil.close(connection, statement, resultSet);
         }

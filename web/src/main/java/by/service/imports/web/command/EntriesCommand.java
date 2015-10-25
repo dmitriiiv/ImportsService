@@ -25,9 +25,9 @@ public class EntriesCommand implements ActionCommand{
 		int entryQuantity;
 		synchronized (entryService) {
 			entryQuantity = entryService.quantity();
-			request.setAttribute(Constants.ATTRIB_NAME_ENTRIES, entryService.findEntryAndOrderBy(Constants.PARAM_ENTRY_ID, 0, 10));
+			request.setAttribute(Constants.ATTRIB_NAME_ENTRIES, entryService.findEntryAndOrderBy(Constants.PARAM_ENTRY_ID, 0, 6));
 		}
-		if (entryQuantity > 10) {
+		if (entryQuantity > 6) {
 			request.setAttribute(Constants.ATTRIB_NAME_NEXT_BUTTON_ACTIVE, Constants.ATTRIB_NAME_ACTIVE);
 		} else {
 			request.setAttribute(Constants.ATTRIB_NAME_NEXT_BUTTON_ACTIVE, Constants.ATTRIB_NAME_DISABLED);

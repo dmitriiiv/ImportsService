@@ -16,9 +16,9 @@
 		<div class="row">
 			<div class="col-md-5"></div>
 			<div class="col-md-2">
-				<form action="controller" method="post">
-					<input type="hidden" name="command" value="import_file">
-					<input type="file" name="file_field">
+				<form action="upload" method="post" enctype="multipart/form-data">
+					<input type="file" name="fileName" required>
+					<p style="color: #ff0000;">${requestScope.errorMessage}</p>
 					<button type="submit" class="btn btn-block btn-default"><fmt:message
                             key="addition.button.import"/></button>
 				</form>

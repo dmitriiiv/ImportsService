@@ -30,4 +30,21 @@ public class EntryServiceImpl implements EntryService{
 		return entryDao.quantity();
 	}
 
+	@Override
+	public boolean addEntry(Entry entry) {
+		LOG.debug("Run addEntry method");
+		return entryDao.create(entry);
+	}
+
+	@Override
+	public boolean updateEntry(Entry entry) {
+		LOG.debug("Run updateEntry method");
+		return entryDao.update(entry);
+	}
+
+	@Override
+	public Entry findByNameAndSurname(String name, String surname) {
+		return entryDao.readByNameAndSurname(name, surname);
+	}
+
 }

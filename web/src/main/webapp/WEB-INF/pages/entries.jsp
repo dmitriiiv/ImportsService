@@ -75,7 +75,15 @@
                             key="entries.button.prev"/></button>
                 		</form>
             		</div>
-            		<div class="col-md-8"></div>
+            		<div class="col-md-3"></div>
+            		<div class="col-md-2">
+            			<form action="controller" method="post">
+                   			<input type="hidden" name="command" value="add_entries">
+              				<button type="submit" class="btn btn-block btn-default"><fmt:message
+                            key="menu.button.import"/></button>
+                		</form>
+            		</div>
+            		<div class="col-md-3"></div>
             		<div class="col-md-2">
                 		<form action="controller" method="post">
                     		<input type="hidden" name="command" value="page">

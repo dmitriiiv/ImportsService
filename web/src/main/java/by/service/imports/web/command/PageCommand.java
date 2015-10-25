@@ -31,12 +31,12 @@ public class PageCommand implements ActionCommand{
 		int entryQuantity;
 		int beginIndex = 0;
 		if (pageNumber != 1) {
-			beginIndex = 10 * (pageNumber - 1);
+			beginIndex = 6 * (pageNumber - 1);
 		}
 		String orderBy = request.getParameter(Constants.ATTRIB_NAME_ORDER_BY);
 		synchronized (entryService) {
 			entryQuantity = entryService.quantity();
-			request.setAttribute(Constants.ATTRIB_NAME_ENTRIES, entryService.findEntryAndOrderBy(orderBy, beginIndex, 10));
+			request.setAttribute(Constants.ATTRIB_NAME_ENTRIES, entryService.findEntryAndOrderBy(orderBy, beginIndex, 6));
 		}
 		request.setAttribute(Constants.ATTRIB_NAME_NEXT_BUTTON_ACTIVE, isActiveNextButton(entryQuantity, pageNumber));
 		request.setAttribute(Constants.ATTRIB_NAME_PREV_BUTTON_ACTIVE, isActivePrevButton(pageNumber));
@@ -46,7 +46,7 @@ public class PageCommand implements ActionCommand{
 	}
 
 	private String isActiveNextButton(int entryQuantity, int pageNumber) {
-		if (entryQuantity > 10 * pageNumber) {
+		if (entryQuantity > 6 * pageNumber) {
 			return Constants.ATTRIB_NAME_ACTIVE;
 		} else {
 			return Constants.ATTRIB_NAME_DISABLED;

@@ -3,9 +3,9 @@ package by.service.imports.web.command.client;
 import by.service.imports.web.command.ActionCommand;
 import by.service.imports.web.command.AddEntriesCommand;
 import by.service.imports.web.command.EntriesCommand;
-import by.service.imports.web.command.ImportCommand;
 import by.service.imports.web.command.MenuCommand;
 import by.service.imports.web.command.PageCommand;
+import by.service.imports.web.command.SuccessImportCommand;
 
 public enum CommandEnum {
 	MENU {
@@ -26,16 +26,16 @@ public enum CommandEnum {
 			return new AddEntriesCommand();
 		}
 	},
-	IMPORT_FILE {
-		@Override
-		public ActionCommand getCurrentCommand() {
-			return new ImportCommand();
-		}
-	}, 
 	PAGE {
 		@Override
 		public ActionCommand getCurrentCommand() {
 			return new PageCommand();
+		}
+	},
+	SUCCESS_IMPORT {
+		@Override
+		public ActionCommand getCurrentCommand() {
+			return new SuccessImportCommand();
 		}
 	};
 	

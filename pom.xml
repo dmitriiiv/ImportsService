@@ -11,5 +11,6 @@
     <module>web</module>
     <module>entity</module>
     <module>util</module>
+    <module>gm</module>
   </modules>
 </project>

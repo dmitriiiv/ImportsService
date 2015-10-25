@@ -3,6 +3,7 @@ package by.service.imports.util;
 public class Constants {
 	
 	public static final String PARAM_NAME_COUNT="count(*)";
+	public static final String FILE_FORMAT_PATTERN=".+(\\.csv)$";
 	
 	// Method names
 	public static final String METHOD_NAME_CREATE="create";
@@ -31,4 +32,7 @@ public class Constants {
     public static final String ATTRIB_NAME_PREV_BUTTON_ACTIVE = "isActivePrev";
     public static final String ATTRIB_NAME_DISABLED = "disabled";
     public static final String ATTRIB_NAME_ACTIVE = "active";
+    public static final String ATTRIB_NAME_FILES_DIR_FILE="files_dir_file";
+    public static final String ATTRIB_NAME_FILES_DIR="files_dir";
+    public static final String ATTRIB_NAME_ERROR_MESSAGE="errorMessage";
 }

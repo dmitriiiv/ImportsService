@@ -6,7 +6,7 @@ import by.service.imports.entity.Entry;
 
 public interface EntryDao extends CrudDao<Entry,Integer>{
 
-	Entry readByLogin(String login);
+	Entry readByNameAndSurname(String name, String surname);
 	
 	int quantity();
 	
