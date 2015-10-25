@@ -77,6 +77,7 @@ public class UploadFileServlet extends HttpServlet{
 					isSuccess = true;
 				}
 			}
+			FileMessageProducer.close();
 		} catch (FileUploadException e) {
 			LOG.error("Exception in uploading file", e);
 		} catch (Exception e) {
@@ -98,6 +99,7 @@ public class UploadFileServlet extends HttpServlet{
 	}
 	
 	private void sendPathOnServer(File file) {
-		FileMessageProducer.sendMessage(file.getPath());
+		FileMessageProducer messageProducer = new FileMessageProducer();
+		messageProducer.sendMessage(file.getPath());
 	}
 }

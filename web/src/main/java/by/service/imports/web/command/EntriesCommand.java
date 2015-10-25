@@ -18,7 +18,7 @@ public class EntriesCommand implements ActionCommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		LOG.debug("Run EntriesCommand execute method");
-		EntryService entryService = new EntryServiceImpl(EntryDaoImpl.getInstance());
+		EntryService entryService = EntryServiceImpl.getInstance(EntryDaoImpl.getInstance());
 		request.setAttribute(Constants.ATTRIB_NAME_ORDER_BY, Constants.PARAM_ENTRY_ID);
 		request.setAttribute(Constants.ATTRIB_NAME_PAGE, 1);
 		request.setAttribute(Constants.ATTRIB_NAME_PREV_BUTTON_ACTIVE, Constants.ATTRIB_NAME_DISABLED);

@@ -18,7 +18,7 @@ public class PageCommand implements ActionCommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		LOG.debug("Run PageCommand execute method");
-		EntryService entryService = new EntryServiceImpl(EntryDaoImpl.getInstance());
+		EntryService entryService = EntryServiceImpl.getInstance(EntryDaoImpl.getInstance());
 		int pageNumber = Integer.parseInt(request.getParameter(Constants.ATTRIB_NAME_PAGE));
 		String button = request.getParameter(Constants.ATTRIB_NAME_BUTTON);
 		if(button != null) {

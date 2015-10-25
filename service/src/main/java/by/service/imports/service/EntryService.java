@@ -15,4 +15,5 @@ public interface EntryService {
 	boolean updateEntry(Entry entry);
 	
 	Entry findByNameAndSurname(String name, String surname);
+	
 }

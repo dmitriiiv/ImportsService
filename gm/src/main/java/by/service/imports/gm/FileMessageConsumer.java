@@ -62,7 +62,7 @@ public class FileMessageConsumer extends Thread{
 			TextMessage m = (TextMessage) consumer.receive();
 			FileParser parser = new CsvFileParser(m.getText());
 			List<Entry> entries = parser.parse();
-			EntryService entryService = new EntryServiceImpl(EntryDaoImpl.getInstance());
+			EntryService entryService = EntryServiceImpl.getInstance(EntryDaoImpl.getInstance());
 			synchronized (entryService) {
 				for (Entry entry : entries) {
 					Entry entryInDB = entryService.findByNameAndSurname(entry.getName(), entry.getSurname());

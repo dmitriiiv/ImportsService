@@ -11,11 +11,19 @@ import by.service.imports.service.EntryService;
 public class EntryServiceImpl implements EntryService{
 	
 	private static final Logger LOG = Logger.getLogger(EntryServiceImpl.class);
+	private static EntryServiceImpl instance;
 	private EntryDao entryDao;
 	
-	public EntryServiceImpl(EntryDao entryDao) {
-		LOG.debug("Run EntryServiceImpl constructor");
+	private EntryServiceImpl(EntryDao entryDao) {
+		LOG.debug("Run EntryService constructor");
 		this.entryDao = entryDao;
+	}
+	
+	public synchronized static EntryServiceImpl getInstance(EntryDao entryDao){
+		if (instance == null) {
+			instance = new EntryServiceImpl(entryDao);
+		}
+		return instance;
 	}
 
 	@Override
